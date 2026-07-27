@@ -1,4 +1,8 @@
-import virgenImage from '@/assets/tours/fondo-virgen-vgb.webp'
+import virgenImage from '@/assets/Tours/cerro-virgen/fondo-virgen-vgb.webp'
+import montaña from '@/assets/Tours/cerro-virgen/montaña.jpg'
+import montañaPaisaje from '@/assets/Tours/cerro-virgen/montaña-paisaje-cielo.jpg'
+import entremontañas from '@/assets/Tours/cerro-virgen/entremontañas.jpg'
+import vista from '@/assets/Tours/cerro-virgen/vistaa.jpg'
 
 export const tours = [
   {
@@ -10,7 +14,12 @@ export const tours = [
 
     descripcion: 'Ascendé por senderos serranos hasta uno de los mejores miradores del valle.',
 
+    descripcionLarga:
+      'Un recorrido pensado para todos los niveles que te lleva por senderos naturales rodeados de sierras hasta la cima del Cerro de la Virgen. Desde arriba, la vista panorámica del Valle de Calamuchita te deja sin palabras. El camino está señalizado y contás con guía local durante todo el trayecto.',
+
     imagen: virgenImage,
+
+    imagenes: [virgenImage, montaña, montañaPaisaje, entremontañas, vista],
 
     destacado: true,
 

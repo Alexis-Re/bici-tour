@@ -1,21 +1,75 @@
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import heroImage from '@/assets/fondo-hero-xplora.webp'
 import Button from '@/components/Button.vue'
+
+const offset = ref(0)
+
+let lastScrollY = 0
+let lastTime = Date.now()
+let velocity = 0
+let animationId = null
+let targetOffset = 0
+const MAX_OFFSET = 200
+
+function getFactor() {
+  return window.innerWidth < 768 ? 0.15 : 0.4
+}
+
+function handleScroll() {
+  const now = Date.now()
+  const dt = now - lastTime
+
+  if (dt > 0) {
+    const dy = window.scrollY - lastScrollY
+    velocity = dy / dt
+  }
+
+  lastScrollY = window.scrollY
+  lastTime = now
+  targetOffset = Math.min(window.scrollY * getFactor(), MAX_OFFSET)
+
+  if (!animationId) {
+    animate()
+  }
+}
+
+function animate() {
+  const diff = targetOffset - offset.value
+
+  offset.value += diff * 0.15
+
+  if (Math.abs(diff) > 0.1) {
+    animationId = requestAnimationFrame(animate)
+  } else {
+    offset.value = targetOffset
+    animationId = null
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll, { passive: true })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+  if (animationId) cancelAnimationFrame(animationId)
+})
 </script>
 
 <template>
   <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <!-- Fondo -->
     <div
-      class="absolute inset-0 bg-cover bg-top"
-      :style="{ backgroundImage: `url(${heroImage})` }"
+      class="absolute inset-0 bg-cover bg-top will-change-transform"
+      :style="{ backgroundImage: `url(${heroImage})`, transform: `translateY(${offset}px)` }"
     ></div>
 
     <!-- Oscurecedor -->
     <div class="absolute inset-0 bg-black/50"></div>
 
     <!-- Contenido -->
-    <div class="relative z-10 text-center px-6 max-w-4xl">
+    <div class="relative z-10 text-center px-6 max-w-4xl pt-20">
       <p class="uppercase tracking-[0.25em] text-white font-black text-l mb-4 drop-shadow-md">
         Xplora VGB
       </p>

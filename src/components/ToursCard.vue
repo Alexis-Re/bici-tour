@@ -1,5 +1,7 @@
 <script setup>
+import { ref } from 'vue'
 import Button from './Button.vue'
+import TourModal from './TourModal.vue'
 
 defineProps({
   tour: {
@@ -7,6 +9,8 @@ defineProps({
     required: true,
   },
 })
+
+const showModal = ref(false)
 </script>
 
 <template>
@@ -37,7 +41,7 @@ defineProps({
         {{ tour.descripcion }}
       </p>
 
-      <div class="mt-8 grid grid-cols-3 gap-6">
+      <div class="mt-8 grid grid-cols-2 gap-6 lg:grid-cols-3">
         <div>
           <p class="text-sm text-gray-500 uppercase">Duración</p>
 
@@ -54,7 +58,7 @@ defineProps({
           </p>
         </div>
 
-        <div>
+        <div class="col-span-2 lg:col-span-1">
           <p class="text-sm text-gray-500 uppercase">Precio</p>
 
           <p class="font-bold text-2xl text-orange-500">
@@ -95,7 +99,9 @@ defineProps({
         </div>
       </div>
 
-      <Button>Conocer recorrido</Button>
+      <Button @click="showModal = true">Conocer recorrido</Button>
     </div>
+
+    <TourModal v-if="showModal" :tour="tour" @close="showModal = false" />
   </div>
 </template>

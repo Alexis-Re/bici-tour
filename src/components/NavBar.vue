@@ -8,7 +8,7 @@ const links = [
   { id: 'experiencias', label: 'Experiencias' },
   { id: 'galeria', label: 'Galería' },
   { id: 'beneficios', label: 'Beneficios' },
-  { id: 'nosotros', label: 'Nosotros' },
+  { id: 'beneficios', label: 'Nosotros' },
   { id: 'contacto', label: 'Contacto' },
 ]
 
@@ -92,13 +92,14 @@ function handleMobileLinkClick(sectionId) {
       <div
         v-if="isMenuOpen"
         class="fixed inset-0 z-[60] flex flex-col items-center justify-center gap-8 bg-gray-900/98 backdrop-blur-md md:hidden"
+        @click="closeMenu"
       >
         <button
           v-for="link in links"
           :key="link.id"
           type="button"
           class="text-xl font-semibold uppercase tracking-[0.15em] text-white hover:text-orange-500 transition-colors duration-300"
-          @click="handleMobileLinkClick(link.id)"
+          @click.stop="handleMobileLinkClick(link.id)"
         >
           {{ link.label }}
         </button>

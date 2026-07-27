@@ -6,7 +6,7 @@ import { tours } from '@/data/tours'
 </script>
 
 <template>
-  <section id="recorridos" class="py-24 px-6 bg-orange-50">
+  <section id="recorridos" class="py-24 px-6 bg-white">
     <div class="max-w-7xl mx-auto">
       <SectionTitle
         subtitle="XPLORA TOURS"

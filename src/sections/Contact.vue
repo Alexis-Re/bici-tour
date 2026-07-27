@@ -21,7 +21,7 @@ function enviarFormulario() {
 </script>
 
 <template>
-  <section id="contacto" class="py-24 px-6 bg-white">
+  <section id="contacto" class="py-24 px-6 bg-orange-50">
     <div class="max-w-7xl mx-auto">
       <SectionTitle
         subtitle="XPLORA CONTACT"
@@ -32,7 +32,7 @@ function enviarFormulario() {
       <div class="grid lg:grid-cols-2 gap-16">
         <form class="space-y-6" @submit.prevent="enviarFormulario">
           <div>
-            <label for="nombre" class="block text-sm font-semibold text-gray-700 mb-2">
+            <label for="nombre" class="block text-sm font-semibold text-gray-900 mb-2">
               Nombre completo
             </label>
             <input
@@ -41,13 +41,13 @@ function enviarFormulario() {
               type="text"
               required
               placeholder="Tu nombre"
-              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all duration-300"
+              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all duration-300 bg-white"
             />
           </div>
 
           <div class="grid sm:grid-cols-2 gap-6">
             <div>
-              <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+              <label for="email" class="block text-sm font-semibold text-gray-900 mb-2">
                 Email
               </label>
               <input
@@ -56,12 +56,12 @@ function enviarFormulario() {
                 type="email"
                 required
                 placeholder="tu@email.com"
-                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all duration-300"
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all duration-300 bg-white"
               />
             </div>
 
             <div>
-              <label for="telefono" class="block text-sm font-semibold text-gray-700 mb-2">
+              <label for="telefono" class="block text-sm font-semibold text-gray-900 mb-2">
                 Teléfono
               </label>
               <input
@@ -69,13 +69,13 @@ function enviarFormulario() {
                 v-model="telefono"
                 type="tel"
                 placeholder="351 123 4567"
-                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all duration-300"
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all duration-300 bg-white"
               />
             </div>
           </div>
 
           <div>
-            <label for="tour" class="block text-sm font-semibold text-gray-700 mb-2">
+            <label for="tour" class="block text-sm font-semibold text-gray-900 mb-2">
               Recorrido de interés
             </label>
             <select
@@ -92,7 +92,7 @@ function enviarFormulario() {
           </div>
 
           <div>
-            <label for="mensaje" class="block text-sm font-semibold text-gray-700 mb-2">
+            <label for="mensaje" class="block text-sm font-semibold text-gray-900 mb-2">
               Mensaje (opcional)
             </label>
             <textarea
@@ -100,7 +100,7 @@ function enviarFormulario() {
               v-model="mensaje"
               rows="4"
               placeholder="Contanos si tenés alguna consulta, preferencia de fecha, cantidad de personas..."
-              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all duration-300 resize-none"
+              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all duration-300 resize-none bg-white"
             ></textarea>
           </div>
 
@@ -171,7 +171,7 @@ function enviarFormulario() {
             </a>
           </div>
 
-          <div class="bg-orange-50 rounded-xl p-6 border border-orange-100">
+          <div class="bg-white rounded-xl p-6 border border-gray-200">
             <p class="text-sm text-gray-600 leading-7">
               <strong class="text-gray-900">Ubicación:</strong> Villa General Belgrano, Córdoba, Argentina.
               Nos encontramos en el Valle de Calamuchita, rodeados de sierras y ríos.
