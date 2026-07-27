@@ -11,12 +11,15 @@ const mensaje = ref('')
 const enviado = ref(false)
 
 function enviarFormulario() {
+  const texto = encodeURIComponent(
+    `Hola! Soy ${nombre.value}. ` +
+    `Quiero reservar: ${tourSeleccionado.value}. ` +
+    `Email: ${email.value}. ` +
+    `Tel: ${telefono.value}. ` +
+    `${mensaje.value ? `Mensaje: ${mensaje.value}` : ''}`
+  )
+  window.open(`https://wa.me/5493546546755?text=${texto}`, '_blank')
   enviado.value = true
-  nombre.value = ''
-  email.value = ''
-  telefono.value = ''
-  tourSeleccionado.value = ''
-  mensaje.value = ''
 }
 </script>
 

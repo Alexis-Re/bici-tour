@@ -1,44 +1,78 @@
-# bici-tour
+# Xplora VGB — Bici Tour
 
-This template should help get you started developing with Vue 3 in Vite.
+Landing page para **Xplora VGB**, empresa de turismo de aventura en Villa General Belgrano y el Valle de Calamuchita, Córdoba, Argentina.
 
-## Recommended IDE Setup
+Recorridos guiados de trekking y cicloturismo con guías locales, equipamiento premium y experiencias inolvidables en la naturaleza.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Demo
 
-## Recommended Browser Setup
+🌐 [https://xploravgb.com](https://xploravgb.com)
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Stack
 
-## Customize configuration
+- **Vue 3** — Composition API, `<script setup>`
+- **Vite 8** — Build rápido con hot reload
+- **Tailwind CSS v4** — Estilos utility-first
+- **ESLint + Oxlint + Prettier** — Calidad de código
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## Instalación
 
 ```sh
+git clone https://github.com/Alexis-Re/bici-tour.git
+cd bici-tour
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+Abre [http://localhost:5173](http://localhost:5173) en tu navegador.
 
-```sh
-npm run build
+## Scripts
+
+| Comando | Descripción |
+|---------|-------------|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Build para producción |
+| `npm run preview` | Preview del build |
+| `npm run lint` | Oxlint + ESLint |
+| `npm run format` | Formatear con Prettier |
+
+## Estructura
+
+```
+src/
+├── components/       # UI reutilizable
+│   ├── Button.vue
+│   ├── NavBar.vue
+│   ├── ToursCard.vue
+│   ├── TourModal.vue
+│   ├── ImageCarousel.vue
+│   ├── SectionTitle.vue
+│   ├── BenefitCard.vue
+│   ├── ExperienceCard.vue
+│   ├── GalleryItem.vue
+│   └── Lightbox.vue
+├── sections/         # Secciones de la página
+│   ├── Hero.vue
+│   ├── Tours.vue
+│   ├── Experiences.vue
+│   ├── Gallery.vue
+│   ├── Benefits.vue
+│   ├── Testimonials.vue
+│   ├── Contact.vue
+│   └── Footer.vue
+├── data/             # Contenido estático
+│   ├── tours.js
+│   ├── experiences.js
+│   ├── benefits.js
+│   ├── gallery.js
+│   └── testimonials.js
+├── composables/      # Lógica reutilizable
+│   └── useSmoothScroll.js
+├── assets/           # Imágenes
+├── App.vue
+└── main.js
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## Autor
 
-```sh
-npm run lint
-```
+**Alexis Re** — [GitHub](https://github.com/Alexis-Re)
