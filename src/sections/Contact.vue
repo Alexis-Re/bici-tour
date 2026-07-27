@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import emailjs from '@emailjs/browser'
 import SectionTitle from '@/components/SectionTitle.vue'
 import { tours } from '@/data/tours'
 
@@ -11,14 +12,18 @@ const mensaje = ref('')
 const enviado = ref(false)
 
 function enviarFormulario() {
-  const texto = encodeURIComponent(
-    `Hola! Soy ${nombre.value}. ` +
-    `Quiero reservar: ${tourSeleccionado.value}. ` +
-    `Email: ${email.value}. ` +
-    `Tel: ${telefono.value}. ` +
-    `${mensaje.value ? `Mensaje: ${mensaje.value}` : ''}`
+  emailjs.send(
+    'service_dihy7pk',
+    'template_qvvykzb',
+    {
+      nombre: nombre.value,
+      email: email.value,
+      telefono: telefono.value,
+      tour: tourSeleccionado.value,
+      mensaje: mensaje.value,
+    },
+    'mAOUk3yOWFd69Jyw4'
   )
-  window.open(`https://wa.me/5493546546755?text=${texto}`, '_blank')
   enviado.value = true
 }
 </script>
