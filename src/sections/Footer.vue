@@ -54,7 +54,7 @@
             </li>
             <li>
               <a
-                href="https://wa.me/5493511234567?text=Hola!%20Quiero%20reservar%20una%20experiencia%20con%20Xplora"
+                href="https://wa.me/5493546546755?text=Hola!%20Quiero%20reservar%20una%20experiencia%20con%20Xplora"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="transition-colors duration-300 hover:text-orange-400"

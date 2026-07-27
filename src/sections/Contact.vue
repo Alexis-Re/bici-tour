@@ -138,7 +138,7 @@ function enviarFormulario() {
 
           <div class="space-y-4">
             <a
-              href="https://wa.me/5493511234567?text=Hola!%20Quiero%20reservar%20una%20experiencia%20con%20Xplora"
+              href="https://wa.me/5493546546755?text=Hola!%20Quiero%20reservar%20una%20experiencia%20con%20Xplora"
               target="_blank"
               rel="noopener noreferrer"
               class="flex items-center gap-4 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-green-500/20"
