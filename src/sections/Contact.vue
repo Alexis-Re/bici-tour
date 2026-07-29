@@ -10,21 +10,36 @@ const telefono = ref('')
 const tourSeleccionado = ref('')
 const mensaje = ref('')
 const enviado = ref(false)
+const error = ref(false)
 
 function enviarFormulario() {
-  emailjs.send(
-    'service_dihy7pk',
-    'template_qvvykzb',
-    {
-      nombre: nombre.value,
-      email: email.value,
-      telefono: telefono.value,
-      tour: tourSeleccionado.value,
-      mensaje: mensaje.value,
-    },
-    'mAOUk3yOWFd69Jyw4'
-  )
-  enviado.value = true
+  error.value = false
+  enviado.value = false
+
+  emailjs
+    .send(
+      'service_dihy7pk',
+      'template_qvvykzb',
+      {
+        nombre: nombre.value,
+        email: email.value,
+        telefono: telefono.value,
+        tour: tourSeleccionado.value,
+        mensaje: mensaje.value,
+      },
+      'mAOUk3yOWFd69Jyw4'
+    )
+    .then(() => {
+      enviado.value = true
+      nombre.value = ''
+      email.value = ''
+      telefono.value = ''
+      tourSeleccionado.value = ''
+      mensaje.value = ''
+    })
+    .catch(() => {
+      error.value = true
+    })
 }
 </script>
 
@@ -113,7 +128,7 @@ function enviarFormulario() {
           </div>
 
           <button
-            v-if="!enviado"
+            v-if="!enviado && !error"
             type="submit"
             class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 rounded-xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transition-all duration-300 hover:-translate-y-0.5"
           >
@@ -121,14 +136,26 @@ function enviarFormulario() {
           </button>
 
           <div
-            v-else
+            v-else-if="enviado && !error"
             class="bg-green-50 border border-green-200 rounded-xl p-6 text-center"
           >
             <p class="text-green-700 font-semibold text-lg">
-              ¡Gracias, {{ nombre }}! Recibimos tu consulta.
+              ¡Gracias! Recibimos tu consulta.
             </p>
             <p class="text-green-600 mt-2">
               Te vamos a contactar pronto para confirmar tu reserva.
+            </p>
+          </div>
+
+          <div
+            v-else-if="error"
+            class="bg-red-50 border border-red-200 rounded-xl p-6 text-center"
+          >
+            <p class="text-red-700 font-semibold text-lg">
+              Hubo un error al enviar.
+            </p>
+            <p class="text-red-600 mt-2">
+              Intentá de nuevo o escribinos por WhatsApp.
             </p>
           </div>
         </form>
