@@ -1,8 +1,8 @@
 import virgenImage from '@/assets/Tours/cerro-virgen/fondo-virgen-vgb.webp'
-import montaña from '@/assets/Tours/cerro-virgen/montaña.jpg'
-import montañaPaisaje from '@/assets/Tours/cerro-virgen/montaña-paisaje-cielo.jpg'
-import entremontañas from '@/assets/Tours/cerro-virgen/entremontañas.jpg'
-import vista from '@/assets/Tours/cerro-virgen/vistaa.jpg'
+import montaña from '@/assets/Tours/cerro-virgen/montaña.webp'
+import montañaPaisaje from '@/assets/Tours/cerro-virgen/montaña-paisaje-cielo.webp'
+import entremontañas from '@/assets/Tours/cerro-virgen/entremontañas.webp'
+import vista from '@/assets/Tours/cerro-virgen/vistaa.webp'
 
 export const tours = [
   {
