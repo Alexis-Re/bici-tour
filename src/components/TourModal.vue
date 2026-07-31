@@ -1,4 +1,5 @@
 <script setup>
+import { onUnmounted } from 'vue'
 import ImageCarousel from './ImageCarousel.vue'
 
 defineProps({
@@ -9,6 +10,12 @@ defineProps({
 })
 
 const emit = defineEmits(['close'])
+
+document.body.style.overflow = 'hidden'
+
+onUnmounted(() => {
+  document.body.style.overflow = ''
+})
 </script>
 
 <template>
@@ -24,6 +31,7 @@ const emit = defineEmits(['close'])
       >
         <button
           type="button"
+          aria-label="Cerrar modal"
           class="absolute top-4 right-4 z-20 w-10 h-10 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center transition-colors duration-300 backdrop-blur-sm"
           @click="emit('close')"
         >

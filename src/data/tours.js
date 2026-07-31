@@ -1,46 +1,53 @@
-import virgenImage from '@/assets/Tours/cerro-virgen/fondo-virgen-vgb.webp'
-import montaña from '@/assets/Tours/cerro-virgen/montaña.webp'
-import montañaPaisaje from '@/assets/Tours/cerro-virgen/montaña-paisaje-cielo.webp'
-import entremontañas from '@/assets/Tours/cerro-virgen/entremontañas.webp'
-import vista from '@/assets/Tours/cerro-virgen/vistaa.webp'
+import puebloEscondido from '@/assets/Tours/pueblo-escondido/fondo-virgen-vgb.webp'
+import montana from '@/assets/Tours/pueblo-escondido/montana.webp'
+import montanaPaisaje from '@/assets/Tours/pueblo-escondido/montana-paisaje-cielo.webp'
+import entremontanas from '@/assets/Tours/pueblo-escondido/entremontanas.webp'
+import vista from '@/assets/Tours/pueblo-escondido/vistaa.webp'
 
 export const tours = [
   {
     id: 1,
 
-    nombre: 'Cerro de la Virgen',
+    nombre: 'Pueblo Escondido',
 
-    categoria: 'Trekking de montaña',
+    categoria: 'Trekking y naturaleza',
 
-    descripcion: 'Ascendé por senderos serranos hasta uno de los mejores miradores del valle.',
+    descripcion: 'Trekking al Salto del Tigre, cumbre al Cerro Áspero y visita a Pueblo Escondido.',
 
     descripcionLarga:
-      'Un recorrido pensado para todos los niveles que te lleva por senderos naturales rodeados de sierras hasta la cima del Cerro de la Virgen. Desde arriba, la vista panorámica del Valle de Calamuchita te deja sin palabras. El camino está señalizado y contás con guía local durante todo el trayecto.',
+      'Una experiencia completa para desconectarse de la rutina. Recorreremos senderos naturales, llegaremos a la cumbre del Cerro Áspero, visitaremos las antiguas minas de tungsteno y descubriremos el histórico Pueblo Escondido. Todo con guía local, almuerzo y traslado incluido.',
 
-    imagen: virgenImage,
+    imagen: puebloEscondido,
 
-    imagenes: [virgenImage, montaña, montañaPaisaje, entremontañas, vista],
+    imagenes: [puebloEscondido, montana, montanaPaisaje, entremontanas, vista],
 
     destacado: true,
 
-    precio: '$35.000',
+    precio: '$150.000',
 
-    duracion: '3 horas',
+    precioDescuento: '$120.000',
 
-    dificultad: 'Fácil',
+    precioDescuentoInfo: '3 o 4 personas',
 
-    capacidad: '10 personas',
+    duracion: 'Día completo',
+
+    dificultad: 'Moderada',
+
+    capacidad: 'Mínimo 2 personas',
 
     incluye: [
-      { icono: '✔', label: 'Guía local especializado' },
-      { icono: '✔', label: 'Paradas panorámicas' },
-      { icono: '✔', label: 'Asistencia durante todo el recorrido' },
+      { icono: '✔', label: 'Traslado en camioneta desde VGB' },
+      { icono: '✔', label: 'Te buscamos por tu alojamiento' },
+      { icono: '✔', label: 'Snacks y almuerzo' },
+      { icono: '✔', label: 'Recorrido guiado' },
+      { icono: '✔', label: 'Seguro' },
+      { icono: '✔', label: 'Botiquín y handy' },
     ],
 
     informacion: [
-      { icono: '⛰', label: 'Desnivel: 180 m' },
-      { icono: '👥', label: 'Máximo 10 personas' },
-      { icono: '🚶', label: 'Apto para principiantes' },
+      { icono: '⛰', label: 'Trekking + minas + pueblo' },
+      { icono: '👥', label: 'Mínimo 2 personas' },
+      { icono: '💰', label: 'Señá con 30% y pagá el saldo anterior a la salida' },
     ],
   },
 ]

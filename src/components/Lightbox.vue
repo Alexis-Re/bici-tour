@@ -36,7 +36,7 @@ onUnmounted(() => {
 <template>
   <Teleport to="body">
     <div
-      class="fixed inset-0 z-100 flex items-center justify-center bg-black/90 px-4 backdrop-blur-sm"
+      class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 px-4 backdrop-blur-sm"
       @click.self="$emit('close')"
     >
       <button

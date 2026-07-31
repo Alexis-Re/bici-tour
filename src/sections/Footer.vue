@@ -1,3 +1,7 @@
+<script setup>
+import { contact } from '@/data/contact'
+</script>
+
 <template>
   <footer class="bg-gray-800 text-white">
     <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
@@ -46,15 +50,15 @@
           <ul class="mt-4 space-y-3 text-sm text-gray-300 sm:text-base">
             <li>
               <a
-                href="mailto:hola@xploravgb.com"
+                :href="`mailto:${contact.email}`"
                 class="transition-colors duration-300 hover:text-orange-400"
               >
-                hola@xploravgb.com
+                {{ contact.email }}
               </a>
             </li>
             <li>
               <a
-                href="https://wa.me/5493546546755?text=Hola!%20Quiero%20reservar%20una%20experiencia%20con%20Xplora"
+                :href="`https://wa.me/${contact.whatsapp}?text=Hola!%20Quiero%20reservar%20una%20experiencia%20con%20Xplora`"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="transition-colors duration-300 hover:text-orange-400"
@@ -64,7 +68,7 @@
             </li>
             <li>
               <a
-                href="https://instagram.com/xploravgb"
+                :href="contact.instagram"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="transition-colors duration-300 hover:text-orange-400"
@@ -79,7 +83,7 @@
       <div
         class="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-gray-400 md:flex-row md:items-center md:justify-between"
       >
-        <p>© 2026 Xplora VGB. Todos los derechos reservados.</p>
+        <p>© {{ new Date().getFullYear() }} Xplora VGB. Todos los derechos reservados.</p>
         <div class="flex flex-wrap gap-4">
           <a href="#contacto" class="transition-colors duration-300 hover:text-orange-400">
             Reservar ahora

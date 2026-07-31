@@ -9,10 +9,13 @@ const props = defineProps({
 })
 
 const currentIndex = ref(0)
+const isPaused = ref(false)
 let interval = null
 
 function next() {
-  currentIndex.value = (currentIndex.value + 1) % props.images.length
+  if (!isPaused.value) {
+    currentIndex.value = (currentIndex.value + 1) % props.images.length
+  }
 }
 
 function prev() {
@@ -23,8 +26,21 @@ function goTo(index) {
   currentIndex.value = index
 }
 
-onMounted(() => {
+function startAutoplay() {
+  clearInterval(interval)
   interval = setInterval(next, 4000)
+}
+
+function pause() {
+  isPaused.value = true
+}
+
+function resume() {
+  isPaused.value = false
+}
+
+onMounted(() => {
+  startAutoplay()
 })
 
 onUnmounted(() => {
@@ -33,18 +49,23 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="relative w-full h-[400px] md:h-[500px] overflow-hidden rounded-t-3xl">
+  <div
+    class="relative w-full h-[400px] md:h-[500px] overflow-hidden rounded-t-3xl"
+    @mouseenter="pause"
+    @mouseleave="resume"
+  >
     <img
       v-for="(img, index) in images"
       :key="index"
       :src="img"
-      :alt="`Imagen ${index + 1}`"
+      :alt="`Imagen ${index + 1} del tour`"
       class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
       :class="index === currentIndex ? 'opacity-100' : 'opacity-0'"
     />
 
     <button
       type="button"
+      aria-label="Imagen anterior"
       class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center transition-colors duration-300 backdrop-blur-sm"
       @click="prev"
     >
@@ -55,6 +76,7 @@ onUnmounted(() => {
 
     <button
       type="button"
+      aria-label="Imagen siguiente"
       class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center transition-colors duration-300 backdrop-blur-sm"
       @click="next"
     >
@@ -68,6 +90,7 @@ onUnmounted(() => {
         v-for="(_, index) in images"
         :key="index"
         type="button"
+        :aria-label="`Ir a imagen ${index + 1}`"
         class="w-2 h-2 rounded-full transition-all duration-300"
         :class="index === currentIndex ? 'bg-white w-6' : 'bg-white/50'"
         @click="goTo(index)"

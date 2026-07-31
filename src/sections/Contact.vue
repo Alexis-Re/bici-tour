@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import emailjs from '@emailjs/browser'
 import SectionTitle from '@/components/SectionTitle.vue'
 import { tours } from '@/data/tours'
+import { contact } from '@/data/contact'
 
 const nombre = ref('')
 const email = ref('')
@@ -11,15 +12,17 @@ const tourSeleccionado = ref('')
 const mensaje = ref('')
 const enviado = ref(false)
 const error = ref(false)
+const cargando = ref(false)
 
 function enviarFormulario() {
   error.value = false
   enviado.value = false
+  cargando.value = true
 
   emailjs
     .send(
-      'service_dihy7pk',
-      'template_qvvykzb',
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
       {
         nombre: nombre.value,
         email: email.value,
@@ -27,7 +30,7 @@ function enviarFormulario() {
         tour: tourSeleccionado.value,
         mensaje: mensaje.value,
       },
-      'mAOUk3yOWFd69Jyw4'
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     )
     .then(() => {
       enviado.value = true
@@ -39,6 +42,9 @@ function enviarFormulario() {
     })
     .catch(() => {
       error.value = true
+    })
+    .finally(() => {
+      cargando.value = false
     })
 }
 </script>
@@ -130,9 +136,17 @@ function enviarFormulario() {
           <button
             v-if="!enviado && !error"
             type="submit"
-            class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 rounded-xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transition-all duration-300 hover:-translate-y-0.5"
+            :disabled="cargando"
+            class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 rounded-xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
           >
-            Enviar reserva
+            <span v-if="cargando" class="flex items-center justify-center gap-2">
+              <svg class="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              Enviando...
+            </span>
+            <span v-else>Enviar reserva</span>
           </button>
 
           <div
@@ -170,7 +184,7 @@ function enviarFormulario() {
 
           <div class="space-y-4">
             <a
-              href="https://wa.me/5493546546755?text=Hola!%20Quiero%20reservar%20una%20experiencia%20con%20Xplora"
+              :href="`https://wa.me/${contact.whatsapp}?text=Hola!%20Quiero%20reservar%20una%20experiencia%20con%20Xplora`"
               target="_blank"
               rel="noopener noreferrer"
               class="flex items-center gap-4 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-green-500/20"
@@ -184,17 +198,17 @@ function enviarFormulario() {
             </a>
 
             <a
-              href="mailto:hola@xploravgb.com?subject=Consulta%20Xplora%20VGB"
+              :href="`mailto:${contact.email}?subject=Consulta%20Xplora%20VGB`"
               class="flex items-center gap-4 bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5"
             >
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <span class="font-semibold">hola@xploravgb.com</span>
+              <span class="font-semibold">{{ contact.email }}</span>
             </a>
 
             <a
-              href="https://instagram.com/xploravgb"
+              :href="contact.instagram"
               target="_blank"
               rel="noopener noreferrer"
               class="flex items-center gap-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-purple-500/20"
@@ -208,8 +222,8 @@ function enviarFormulario() {
 
           <div class="bg-white rounded-xl p-6 border border-gray-200">
             <p class="text-sm text-gray-600 leading-7">
-              <strong class="text-gray-900">Ubicación:</strong> Villa General Belgrano, Córdoba, Argentina.
-              Nos encontramos en el Valle de Calamuchita, rodeados de sierras y ríos.
+              <strong class="text-gray-900">Ubicación:</strong> {{ contact.ubicacion }}
+              {{ contact.descripcionUbicacion }}
             </p>
           </div>
         </div>

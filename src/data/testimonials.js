@@ -6,7 +6,7 @@ export const testimonials = [
     calificacion: 5,
     comentario:
       'Una experiencia increíble. El guía conocía cada sendero y las paradas panorámicas fueron perfectas. Volveré seguro.',
-    tour: 'Cerro de la Virgen',
+    tour: 'Pueblo Escondido',
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const testimonials = [
     calificacion: 5,
     comentario:
       'Nunca había hecho trekking y me sentí muy segura desde el primer minuto. Los guías son pacientes y apasionados.',
-    tour: 'Cerro de la Virgen',
+    tour: 'Pueblo Escondido',
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const testimonials = [
     calificacion: 5,
     comentario:
       'El equipamiento es de primera. Las bicicletas estaban impecables y el recorrido fue hermoso. Muy profesional todo.',
-    tour: 'Cerro de la Virgen',
+    tour: 'Pueblo Escondido',
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ export const testimonials = [
     calificacion: 5,
     comentario:
       'Viajé solo y conocí gente genial. El grupo fue reducido y se disfrutó cada tramo sin apuro. Totalmente recomendable.',
-    tour: 'Cerro de la Virgen',
+    tour: 'Pueblo Escondido',
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ export const testimonials = [
     calificacion: 5,
     comentario:
       'Vinimos de viaje y fue lo mejor de nuestra estadía. El Valle es un paraíso y con Xplora lo vivimos al máximo.',
-    tour: 'Cerro de la Virgen',
+    tour: 'Pueblo Escondido',
   },
   {
     id: 6,
@@ -51,6 +51,6 @@ export const testimonials = [
     calificacion: 5,
     comentario:
       'La seguridad que transmiten los guías te da total confianza. Disfruté cada minuto del recorrido con mi familia.',
-    tour: 'Cerro de la Virgen',
+    tour: 'Pueblo Escondido',
   },
 ]

@@ -8,7 +8,6 @@ const links = [
   { id: 'experiencias', label: 'Experiencias' },
   { id: 'galeria', label: 'Galería' },
   { id: 'beneficios', label: 'Beneficios' },
-  { id: 'beneficios', label: 'Nosotros' },
   { id: 'contacto', label: 'Contacto' },
 ]
 

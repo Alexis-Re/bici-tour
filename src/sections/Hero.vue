@@ -5,9 +5,6 @@ import Button from '@/components/Button.vue'
 
 const offset = ref(0)
 
-let lastScrollY = 0
-let lastTime = Date.now()
-let velocity = 0
 let animationId = null
 let targetOffset = 0
 const MAX_OFFSET = 200
@@ -17,16 +14,6 @@ function getFactor() {
 }
 
 function handleScroll() {
-  const now = Date.now()
-  const dt = now - lastTime
-
-  if (dt > 0) {
-    const dy = window.scrollY - lastScrollY
-    velocity = dy / dt
-  }
-
-  lastScrollY = window.scrollY
-  lastTime = now
   targetOffset = Math.min(window.scrollY * getFactor(), MAX_OFFSET)
 
   if (!animationId) {
@@ -63,6 +50,8 @@ onUnmounted(() => {
     <div
       class="absolute inset-0 bg-cover bg-top will-change-transform"
       :style="{ backgroundImage: `url(${heroImage})`, transform: `translateY(${offset}px)` }"
+      role="img"
+      aria-label="Paisaje de montañas en el Valle de Calamuchita"
     ></div>
 
     <!-- Oscurecedor -->

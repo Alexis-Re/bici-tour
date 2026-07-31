@@ -4,8 +4,8 @@ import miradorValle from '@/assets/Gallery/mirador-valle.webp'
 import bicicletaDetalle from '@/assets/Gallery/descubri.webp'
 import atardecerCerro from '@/assets/Gallery/atardecer-cerro.webp'
 import guiaSendero from '@/assets/Gallery/guia-sendero.webp'
-import rioSendero from '@/assets/Gallery/rioSendero.webp'
-import montañaSendero from '@/assets/Gallery/montaña-sendero-virgen.webp'
+import rioSendero from '@/assets/Gallery/rio-sendero.webp'
+import montanaSendero from '@/assets/Gallery/montana-sendero-virgen.webp'
 import grupoDescanso from '@/assets/Gallery/grupo-descanso.webp'
 
 export const galleryCategories = ['Todos', 'Senderos', 'Bicicletas', 'Paisajes', 'Grupos']
@@ -61,7 +61,7 @@ export const galleryItems = [
   },
   {
     id: 9,
-    imagen: montañaSendero,
+    imagen: montanaSendero,
     alt: 'Montaña y sendero del Cerro de la Virgen',
     categoria: 'Senderos',
   },

@@ -1,7 +1,7 @@
-import pzoverde from '@/assets/experiences/pzoverde.webp'
-import xpliragrone from '@/assets/experiences/xpliragrone.jpg'
-import logardi from '@/assets/experiences/logardi.webp'
-import logolo from '@/assets/experiences/logolo.webp'
+import pzoverde from '@/assets/Experiences/pzoverde.webp'
+import xpliragrone from '@/assets/Experiences/xpliragrone.webp'
+import logardi from '@/assets/Experiences/logardi.webp'
+import logolo from '@/assets/Experiences/logolo.webp'
 
 export const experiences = [
   {

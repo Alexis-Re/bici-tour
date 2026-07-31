@@ -10,6 +10,10 @@ const props = defineProps({
     type: String,
     default: null,
   },
+  showArrow: {
+    type: Boolean,
+    default: true,
+  },
 })
 
 const { scrollToSection } = useSmoothScroll()
@@ -35,6 +39,7 @@ function handleClick() {
     <slot />
 
     <svg
+      v-if="showArrow"
       xmlns="http://www.w3.org/2000/svg"
       class="w-5 h-5"
       fill="none"
