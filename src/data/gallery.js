@@ -13,7 +13,7 @@ import puenteCosteleta from '@/assets/Gallery/puente-costeleta-pescondido.webp'
 import ruedaPueblo from '@/assets/Gallery/rueda-pueblo-pescondido.webp'
 import construccion from '@/assets/Gallery/construccion-pescondido.webp'
 
-export const galleryCategories = ['Todos', 'Senderos', 'Bicicletas', 'Paisajes', 'Grupos', 'Pueblo Escondido']
+export const galleryCategories = ['Todos', 'Senderos', 'Bicicletas', 'Paisajes', 'Grupos', 'Cerro de la Virgen', 'Pueblo Escondido']
 
 export const galleryItems = [
   {
@@ -32,7 +32,7 @@ export const galleryItems = [
     id: 3,
     imagen: miradorValle,
     alt: 'Mirador del Valle de Calamuchita',
-    categoria: 'Paisajes',
+    categoria: 'Cerro de la Virgen',
   },
   {
     id: 4,
@@ -44,7 +44,7 @@ export const galleryItems = [
     id: 5,
     imagen: atardecerCerro,
     alt: 'Atardecer desde el Cerro de la Virgen',
-    categoria: 'Paisajes',
+    categoria: 'Cerro de la Virgen',
   },
   {
     id: 6,
@@ -68,7 +68,7 @@ export const galleryItems = [
     id: 9,
     imagen: montanaSendero,
     alt: 'Montaña y sendero del Cerro de la Virgen',
-    categoria: 'Senderos',
+    categoria: 'Cerro de la Virgen',
   },
   {
     id: 10,
