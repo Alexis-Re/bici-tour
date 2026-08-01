@@ -27,12 +27,12 @@ Vue 3 + Vite + Tailwind CSS v4 landing page for a bike tour company (Xplora VGB)
 - **Component naming**: Single-word names allowed (`vue/multi-word-component-names: off`)
 - **Styling**: Tailwind utility classes only (no custom CSS files except `src/assets/main.css`)
 - **Images**: Stored in `src/assets/` with `.webp`/`.png`/`.jpg`, imported via `@/assets/...`
-- **Data**: Static content in `src/data/*.js` (tours, benefits, experiences, gallery)
+- **Data**: Static content in `src/data/*.js` (tours, benefits, experiences, gallery, testimonials, contact)
 
 ## Project Structure
 ```
 src/
-├── components/     # Reusable UI components (Button, Card, Lightbox, NavBar, etc.)
+├── components/     # Reusable UI components (Button, NavBar, ToursCard, TourModal, etc.)
 ├── sections/       # Page sections (Hero, Tours, Gallery, Contact, etc.)
 ├── data/           # Static content arrays
 ├── composables/    # Vue composables (useSmoothScroll)
@@ -48,17 +48,15 @@ src/
   - Prettier rules disabled via `eslint-config-prettier`
 - **Prettier**: `semi: false`, `singleQuote: true`, `printWidth: 100`
 
-## Known Gaps / Incomplete Sections
-- `src/sections/Contact.vue` - placeholder only ("Contact")
-- `src/sections/Testimonials.vue` - placeholder only ("Testimonials")
-- `src/sections/Footer.vue` - placeholder only ("Footer")
-- Only 1 tour defined (`Cerro de la Virgen`) in `src/data/tours.js`
-- No actual contact form submission logic
-- No testimonials data file
+## Known Gaps
+- Only 1 tour defined (`Pueblo Escondido`) in `src/data/tours.js`
 
 ## Environment
 - Node: `^20.19.0 || >=22.12.0`
 - Package manager: npm (lockfile: `package-lock.json`)
+
+## Contact Form
+- Uses EmailJS (`@emailjs/browser`); env vars `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, `VITE_EMAILJS_PUBLIC_KEY` are in `.env` (committed with placeholder values)
 
 ## VS Code Setup (recommended)
 - Extensions: Vue (Official), Tailwind CSS IntelliSense

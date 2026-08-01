@@ -1,8 +1,8 @@
-import puebloEscondido from '@/assets/Tours/pueblo-escondido/fondo-virgen-vgb.webp'
-import montana from '@/assets/Tours/pueblo-escondido/montana.webp'
-import montanaPaisaje from '@/assets/Tours/pueblo-escondido/montana-paisaje-cielo.webp'
-import entremontanas from '@/assets/Tours/pueblo-escondido/entremontanas.webp'
-import vista from '@/assets/Tours/pueblo-escondido/vistaa.webp'
+import cascadaLago from '@/assets/Tours/pueblo-escondido/cascada-lago.webp'
+import ruinasDecote from '@/assets/Tours/pueblo-escondido/ruinas-decote-pescondido.webp'
+import puenteCosteleta from '@/assets/Tours/pueblo-escondido/puente-costeleta-pescondido.webp'
+import ruedaPueblo from '@/assets/Tours/pueblo-escondido/rueda-pueblo-pescondido.webp'
+import construccion from '@/assets/Tours/pueblo-escondido/construccion-pescondido.webp'
 
 export const tours = [
   {
@@ -17,9 +17,9 @@ export const tours = [
     descripcionLarga:
       'Una experiencia completa para desconectarse de la rutina. Recorreremos senderos naturales, llegaremos a la cumbre del Cerro Áspero, visitaremos las antiguas minas de tungsteno y descubriremos el histórico Pueblo Escondido. Todo con guía local, almuerzo y traslado incluido.',
 
-    imagen: puebloEscondido,
+    imagen: cascadaLago,
 
-    imagenes: [puebloEscondido, montana, montanaPaisaje, entremontanas, vista],
+    imagenes: [cascadaLago, ruinasDecote, puenteCosteleta, ruedaPueblo, construccion],
 
     destacado: true,
 

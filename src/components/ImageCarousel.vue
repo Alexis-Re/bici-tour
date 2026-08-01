@@ -9,13 +9,10 @@ const props = defineProps({
 })
 
 const currentIndex = ref(0)
-const isPaused = ref(false)
 let interval = null
 
 function next() {
-  if (!isPaused.value) {
-    currentIndex.value = (currentIndex.value + 1) % props.images.length
-  }
+  currentIndex.value = (currentIndex.value + 1) % props.images.length
 }
 
 function prev() {
@@ -24,42 +21,39 @@ function prev() {
 
 function goTo(index) {
   currentIndex.value = index
+  stopAutoplay()
+  startAutoplay()
 }
 
 function startAutoplay() {
-  clearInterval(interval)
   interval = setInterval(next, 4000)
 }
 
-function pause() {
-  isPaused.value = true
+function stopAutoplay() {
+  clearInterval(interval)
 }
-
-function resume() {
-  isPaused.value = false
-}
-
-onMounted(() => {
-  startAutoplay()
-})
 
 onUnmounted(() => {
   clearInterval(interval)
+})
+
+onMounted(() => {
+  startAutoplay()
 })
 </script>
 
 <template>
   <div
-    class="relative w-full h-[400px] md:h-[500px] overflow-hidden rounded-t-3xl"
-    @mouseenter="pause"
-    @mouseleave="resume"
+    class="relative w-full h-[400px] md:h-[500px] overflow-hidden rounded-t-3xl bg-gray-900"
+    @mouseenter="stopAutoplay"
+    @mouseleave="startAutoplay"
   >
     <img
       v-for="(img, index) in images"
       :key="index"
       :src="img"
       :alt="`Imagen ${index + 1} del tour`"
-      class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+      class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700"
       :class="index === currentIndex ? 'opacity-100' : 'opacity-0'"
     />
 
