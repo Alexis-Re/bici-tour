@@ -13,7 +13,7 @@ import puenteCosteleta from '@/assets/Gallery/puente-costeleta-pescondido.webp'
 import ruedaPueblo from '@/assets/Gallery/rueda-pueblo-pescondido.webp'
 import construccion from '@/assets/Gallery/construccion-pescondido.webp'
 
-export const galleryCategories = ['Todos', 'Senderos', 'Bicicletas', 'Paisajes', 'Grupos', 'Cerro de la Virgen', 'Pueblo Escondido']
+export const galleryCategories = ['Todos', 'Senderos', 'Paisajes', 'Cerro de la Virgen', 'Pueblo Escondido']
 
 export const galleryItems = [
   {
