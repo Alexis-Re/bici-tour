@@ -10,13 +10,38 @@ const email = ref('')
 const telefono = ref('')
 const tourSeleccionado = ref('')
 const mensaje = ref('')
+const honeypot = ref('')
 const enviado = ref(false)
 const error = ref(false)
 const cargando = ref(false)
+const bloqueado = ref(false)
+
+const MAX_MENSAJE = 500
+
+function validar() {
+  if (!nombre.value.trim()) return 'Ingresá tu nombre'
+  if (nombre.value.trim().length < 2) return 'El nombre es muy corto'
+  if (!email.value.trim()) return 'Ingresá tu email'
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) return 'El email no es válido'
+  if (!tourSeleccionado.value) return 'Elegí un recorrido'
+  if (telefono.value.trim() && !/^[\d\s\-+()]{7,20}$/.test(telefono.value.trim()))
+    return 'El teléfono no es válido'
+  if (mensaje.value.length > MAX_MENSAJE) return `El mensaje no puede superar ${MAX_MENSAJE} caracteres`
+  return null
+}
 
 function enviarFormulario() {
   error.value = false
   enviado.value = false
+
+  if (honeypot.value) return
+
+  const errorValidacion = validar()
+  if (errorValidacion) {
+    error.value = true
+    return
+  }
+
   cargando.value = true
 
   emailjs
@@ -24,11 +49,11 @@ function enviarFormulario() {
       import.meta.env.VITE_EMAILJS_SERVICE_ID,
       import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
       {
-        nombre: nombre.value,
-        email: email.value,
-        telefono: telefono.value,
+        nombre: nombre.value.trim(),
+        email: email.value.trim(),
+        telefono: telefono.value.trim(),
         tour: tourSeleccionado.value,
-        mensaje: mensaje.value,
+        mensaje: mensaje.value.trim(),
       },
       import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     )
@@ -39,8 +64,13 @@ function enviarFormulario() {
       telefono.value = ''
       tourSeleccionado.value = ''
       mensaje.value = ''
+      bloqueado.value = true
+      setTimeout(() => {
+        bloqueado.value = false
+      }, 30000)
     })
-    .catch(() => {
+    .catch((err) => {
+      console.error('Error al enviar formulario:', err)
       error.value = true
     })
     .finally(() => {
@@ -60,6 +90,13 @@ function enviarFormulario() {
 
       <div class="grid lg:grid-cols-2 gap-16">
         <form class="space-y-6" @submit.prevent="enviarFormulario">
+          <div
+            aria-hidden="true"
+            style="position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; overflow: hidden"
+          >
+            <label for="website">Website</label>
+            <input id="website" v-model="honeypot" type="text" name="website" tabindex="-1" autocomplete="off" />
+          </div>
           <div>
             <label for="nombre" class="block text-sm font-semibold text-gray-900 mb-2">
               Nombre completo
@@ -136,7 +173,7 @@ function enviarFormulario() {
           <button
             v-if="!enviado && !error"
             type="submit"
-            :disabled="cargando"
+            :disabled="cargando || bloqueado"
             class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-4 rounded-xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
           >
             <span v-if="cargando" class="flex items-center justify-center gap-2">
