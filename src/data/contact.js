@@ -1,6 +1,6 @@
 export const contact = {
   whatsapp: '5493546546755',
-  email: 'hola@xploravgb.com',
+  email: 'xploravgb@gmail.com',
   instagram: 'https://instagram.com/xploravgb',
   ubicacion: 'Villa General Belgrano, Córdoba, Argentina.',
   descripcionUbicacion:

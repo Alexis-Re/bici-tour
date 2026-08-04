@@ -235,7 +235,9 @@ function enviarFormulario() {
             </a>
 
             <a
-              :href="`mailto:${contact.email}?subject=Consulta%20Xplora%20VGB`"
+              :href="`https://mail.google.com/mail/?view=cm&fs=1&to=${contact.email}&subject=Consulta%20Xplora%20VGB`"
+              target="_blank"
+              rel="noopener noreferrer"
               class="flex items-center gap-4 bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5"
             >
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
