@@ -5,7 +5,7 @@ import { useSmoothScroll } from '@/composables/useSmoothScroll'
 
 const links = [
   { id: 'recorridos', label: 'Recorridos' },
-  { id: 'experiencias', label: 'Experiencias' },
+  { id: 'experiencias', label: 'Cómo funciona' },
   { id: 'galeria', label: 'Galería' },
   { id: 'beneficios', label: 'Beneficios' },
   { id: 'contacto', label: 'Contacto' },

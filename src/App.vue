@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue'
 import NavBar from './components/NavBar.vue'
 
 import Hero from './sections/Hero.vue'
@@ -10,7 +11,7 @@ import Testimonials from './sections/Testimonials.vue'
 import Contact from './sections/Contact.vue'
 import Footer from './sections/Footer.vue'
 
-
+const mostrarTestimonios = ref(false)
 </script>
 
 <template>
@@ -20,7 +21,7 @@ import Footer from './sections/Footer.vue'
   <Experiences />
   <Gallery />
   <Benefits />
-  <Testimonials />
+  <Testimonials v-if="mostrarTestimonios" />
   <Contact />
   <Footer />
 </template>

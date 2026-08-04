@@ -12,8 +12,12 @@ import ruinasDecote from '@/assets/Gallery/ruinas-decote-pescondido.webp'
 import puenteCosteleta from '@/assets/Gallery/puente-costeleta-pescondido.webp'
 import ruedaPueblo from '@/assets/Gallery/rueda-pueblo-pescondido.webp'
 import construccion from '@/assets/Gallery/construccion-pescondido.webp'
+import paisajesUnicos from '@/assets/Gallery/pzoverde.webp'
+import guiasEspecializados from '@/assets/Gallery/xpliragrone.webp'
+import bicicletasPremium from '@/assets/Gallery/logardi.webp'
+import paradasDescanso from '@/assets/Gallery/logolo.webp'
 
-export const galleryCategories = ['Todos', 'Senderos', 'Paisajes', 'Cerro de la Virgen', 'Pueblo Escondido']
+export const galleryCategories = ['Todos', 'Senderos', 'Paisajes', 'Cerro de la Virgen', 'Pueblo Escondido', 'Experiencias']
 
 export const galleryItems = [
   {
@@ -99,5 +103,29 @@ export const galleryItems = [
     imagen: construccion,
     alt: 'Arquitectura rústica de Pueblo Escondido',
     categoria: 'Pueblo Escondido',
+  },
+  {
+    id: 15,
+    imagen: paisajesUnicos,
+    alt: 'Paisajes del Valle de Calamuchita',
+    categoria: 'Experiencias',
+  },
+  {
+    id: 16,
+    imagen: guiasEspecializados,
+    alt: 'Guías especializados en trekking',
+    categoria: 'Experiencias',
+  },
+  {
+    id: 17,
+    imagen: bicicletasPremium,
+    alt: 'Bicicletas premium para los recorridos',
+    categoria: 'Experiencias',
+  },
+  {
+    id: 18,
+    imagen: paradasDescanso,
+    alt: 'Paradas para descansar y disfrutar del paisaje',
+    categoria: 'Experiencias',
   },
 ]
