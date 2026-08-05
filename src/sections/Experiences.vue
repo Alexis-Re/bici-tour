@@ -66,6 +66,15 @@ const stats = [
           <p class="mt-2 text-sm text-gray-600">{{ stat.label }}</p>
         </div>
       </div>
+
+      <div class="mt-16 text-center">
+        <a
+          href="#contacto"
+          class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transition-all duration-300 hover:-translate-y-0.5"
+        >
+          Reservá tu experiencia
+        </a>
+      </div>
     </div>
   </section>
 </template>
