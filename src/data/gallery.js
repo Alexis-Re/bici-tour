@@ -12,67 +12,60 @@ import ruinasDecote from '@/assets/Gallery/ruinas-decote-pescondido.webp'
 import puenteCosteleta from '@/assets/Gallery/puente-costeleta-pescondido.webp'
 import ruedaPueblo from '@/assets/Gallery/rueda-pueblo-pescondido.webp'
 import construccion from '@/assets/Gallery/construccion-pescondido.webp'
-import paisajesUnicos from '@/assets/Gallery/pzoverde.webp'
 import guiasEspecializados from '@/assets/Gallery/xpliragrone.webp'
 import bicicletasPremium from '@/assets/Gallery/logardi.webp'
-import paradasDescanso from '@/assets/Gallery/logolo.webp'
+import aguilaChampa from '@/assets/Gallery/aguila-champa.webp'
+import cuevasChampa from '@/assets/Gallery/cuevas-champa.webp'
+import parejaPiedras from '@/assets/Gallery/pareja-piedras-champa.webp'
+import piedraAgua from '@/assets/Gallery/piedra-agua-reflejo-champa.webp'
 
-export const galleryCategories = ['Todos', 'Senderos', 'Paisajes', 'Cerro de la Virgen', 'Pueblo Escondido', 'Experiencias']
+export const galleryCategories = ['Todas', 'Pueblo Escondido', 'Champaquí']
 
 export const galleryItems = [
   {
     id: 1,
     imagen: senderoVista,
     alt: 'Sendero con vista al valle',
-    categoria: 'Senderos',
   },
   {
     id: 2,
     imagen: grupoBicis,
     alt: 'Grupo de ciclistas en el recorrido',
-    categoria: 'Grupos',
   },
   {
     id: 3,
     imagen: miradorValle,
     alt: 'Mirador del Valle de Calamuchita',
-    categoria: 'Cerro de la Virgen',
   },
   {
     id: 4,
     imagen: bicicletaDetalle,
     alt: 'Detalle de bicicleta preparada para el recorrido',
-    categoria: 'Bicicletas',
   },
   {
     id: 5,
     imagen: atardecerCerro,
     alt: 'Atardecer desde el Cerro de la Virgen',
-    categoria: 'Cerro de la Virgen',
   },
   {
     id: 6,
     imagen: guiaSendero,
     alt: 'Guía local en el sendero',
-    categoria: 'Senderos',
   },
   {
     id: 7,
     imagen: rioSendero,
     alt: 'Río durante el recorrido',
-    categoria: 'Paisajes',
   },
   {
     id: 8,
     imagen: grupoDescanso,
     alt: 'Grupo tomando una pausa panorámica',
-    categoria: 'Grupos',
   },
   {
     id: 9,
     imagen: montanaSendero,
     alt: 'Montaña y sendero del Cerro de la Virgen',
-    categoria: 'Cerro de la Virgen',
   },
   {
     id: 10,
@@ -106,26 +99,36 @@ export const galleryItems = [
   },
   {
     id: 15,
-    imagen: paisajesUnicos,
-    alt: 'Paisajes del Valle de Calamuchita',
-    categoria: 'Experiencias',
+    imagen: guiasEspecializados,
+    alt: 'Guías especializados en trekking',
   },
   {
     id: 16,
-    imagen: guiasEspecializados,
-    alt: 'Guías especializados en trekking',
-    categoria: 'Experiencias',
+    imagen: bicicletasPremium,
+    alt: 'Bicicletas premium para los recorridos',
   },
   {
     id: 17,
-    imagen: bicicletasPremium,
-    alt: 'Bicicletas premium para los recorridos',
-    categoria: 'Experiencias',
+    imagen: aguilaChampa,
+    alt: 'Águila en el Cerro Champaquí',
+    categoria: 'Champaquí',
   },
   {
     id: 18,
-    imagen: paradasDescanso,
-    alt: 'Paradas para descansar y disfrutar del paisaje',
-    categoria: 'Experiencias',
+    imagen: cuevasChampa,
+    alt: 'Cuevas del Cerro Champaquí',
+    categoria: 'Champaquí',
+  },
+  {
+    id: 19,
+    imagen: parejaPiedras,
+    alt: 'Pareja en las piedras del Champaquí',
+    categoria: 'Champaquí',
+  },
+  {
+    id: 20,
+    imagen: piedraAgua,
+    alt: 'Piedra con reflejo del agua en Champaquí',
+    categoria: 'Champaquí',
   },
 ]

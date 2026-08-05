@@ -5,11 +5,11 @@ import GalleryItem from '@/components/GalleryItem.vue'
 import Lightbox from '@/components/Lightbox.vue'
 import { galleryItems, galleryCategories } from '@/data/gallery'
 
-const activeCategory = ref('Todos')
+const activeCategory = ref('Todas')
 const lightboxIndex = ref(null)
 
 const filteredItems = computed(() => {
-  if (activeCategory.value === 'Todos') return galleryItems
+  if (activeCategory.value === 'Todas') return galleryItems
   return galleryItems.filter((item) => item.categoria === activeCategory.value)
 })
 
