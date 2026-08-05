@@ -29,7 +29,7 @@ import { contact } from '@/data/contact'
             </li>
             <li>
               <a href="#experiencias" class="transition-colors duration-300 hover:text-orange-400">
-                Experiencias
+                ¿Cómo funciona?
               </a>
             </li>
             <li>

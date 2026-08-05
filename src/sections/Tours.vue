@@ -14,7 +14,9 @@ import { tours } from '@/data/tours'
         description="Elegí el recorrido que mejor se adapte a tu próxima aventura."
       />
 
-      <ToursCard v-for="tour in tours" :key="tour.id" :tour="tour" />
+      <div class="space-y-16">
+        <ToursCard v-for="tour in tours" :key="tour.id" :tour="tour" />
+      </div>
     </div>
   </section>
 </template>

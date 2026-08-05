@@ -18,31 +18,34 @@ Vue 3 + Vite + Tailwind CSS v4 landing page for a bike tour company (Xplora VGB)
 - **Vue 3** (Composition API, `<script setup>`)
 - **Vite 8** with `@vitejs/plugin-vue`
 - **Tailwind CSS v4** (via `@tailwindcss/vite` plugin)
-- **Pinia** for state (configured but minimally used)
-- **Vue Router 5** (configured but not actively used - single-page layout)
 - **ESLint flat config** + **oxlint** + **Prettier**
+- **Image optimization**: `vite-plugin-image-optimizer` (sharp-based, quality 80 for jpg/png/webp)
 
 ## Key Conventions
 - **Path alias**: `@` → `./src`
 - **Component naming**: Single-word names allowed (`vue/multi-word-component-names: off`)
 - **Styling**: Tailwind utility classes only (no custom CSS files except `src/assets/main.css`)
 - **Images**: Stored in `src/assets/` with `.webp`/`.png`/`.jpg`, imported via `@/assets/...`
-- **Data**: Static content in `src/data/*.js` (tours, benefits, experiences, gallery, testimonials, contact)
+- **Data**: Static content in `src/data/*.js` (tours, benefits, gallery, testimonials, contact)
+- **No Pinia/Router**: State management and routing are NOT used despite being in package.json
 
 ## Project Structure
 ```
 src/
 ├── components/     # Reusable UI components (Button, NavBar, ToursCard, TourModal, etc.)
 ├── sections/       # Page sections (Hero, Tours, Gallery, Contact, etc.)
-├── data/           # Static content arrays
+├── data/           # Static content arrays (tours, benefits, gallery, testimonials, contact)
 ├── composables/    # Vue composables (useSmoothScroll)
 ├── assets/         # Images, main.css
 ├── App.vue         # Root layout (single-page sections)
-└── main.js         # App entry (Vue + Pinia + Router)
+└── main.js         # App entry (Vue only, no Pinia/Router)
 ```
 
 ## Linting Rules
 - **oxlint**: Primary linter (fast, runs first), configured via `.oxlintrc.json`
+  - Plugins: eslint, unicorn, oxc, vue
+  - Environment: browser
+  - Categories: correctness as error
 - **eslint**: Runs after oxlint, uses flat config (`eslint.config.js`)
   - Vue essential rules + `vue/multi-word-component-names: off`
   - Prettier rules disabled via `eslint-config-prettier`
@@ -50,6 +53,7 @@ src/
 
 ## Known Gaps
 - Only 1 tour defined (`Pueblo Escondido`) in `src/data/tours.js`
+- `experiences.js` mentioned in README but doesn't exist (data is inline in `Experiences.vue`)
 
 ## Environment
 - Node: `^20.19.0 || >=22.12.0`
@@ -57,6 +61,8 @@ src/
 
 ## Contact Form
 - Uses EmailJS (`@emailjs/browser`); env vars `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, `VITE_EMAILJS_PUBLIC_KEY` are in `.env` (committed with placeholder values)
+- Has honeypot field for spam protection
+- 30-second cooldown after successful submission
 
 ## VS Code Setup (recommended)
 - Extensions: Vue (Official), Tailwind CSS IntelliSense

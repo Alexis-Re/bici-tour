@@ -20,10 +20,10 @@ const pasos = [
 ]
 
 const stats = [
-  { valor: '+500', label: 'Experiencias realizadas' },
-  { valor: '100%', label: 'Guías locales certificados' },
+  { valor: '40', label: 'Recorridos realizados' },
+  { valor: '15', label: 'Años de experiencia' },
   { valor: '✓', label: 'Seguro incluido' },
-  { valor: '★', label: 'Equipamiento premium' },
+  { valor: '24hs', label: 'Respuesta garantizada' },
 ]
 </script>
 
