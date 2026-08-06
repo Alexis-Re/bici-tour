@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted, computed } from 'vue'
+import { onMounted, onUnmounted, computed, ref } from 'vue'
 
 const props = defineProps({
   items: {
@@ -14,17 +14,54 @@ const props = defineProps({
 
 const emit = defineEmits(['close', 'next', 'prev'])
 
+const lightboxRef = ref(null)
+const closeButtonRef = ref(null)
+
 const currentItem = computed(() => props.items[props.currentIndex])
 
 function handleKeydown(event) {
-  if (event.key === 'Escape') emit('close')
-  if (event.key === 'ArrowRight') emit('next')
-  if (event.key === 'ArrowLeft') emit('prev')
+  if (event.key === 'Escape') {
+    emit('close')
+    return
+  }
+  if (event.key === 'ArrowRight') {
+    emit('next')
+    return
+  }
+  if (event.key === 'ArrowLeft') {
+    emit('prev')
+    return
+  }
+  if (event.key !== 'Tab') return
+
+  const container = lightboxRef.value
+  if (!container) return
+
+  const focusable = container.querySelectorAll(
+    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  )
+  if (focusable.length === 0) return
+
+  const first = focusable[0]
+  const last = focusable[focusable.length - 1]
+
+  if (event.shiftKey) {
+    if (document.activeElement === first) {
+      event.preventDefault()
+      last.focus()
+    }
+  } else {
+    if (document.activeElement === last) {
+      event.preventDefault()
+      first.focus()
+    }
+  }
 }
 
 onMounted(() => {
   window.addEventListener('keydown', handleKeydown)
   document.body.style.overflow = 'hidden'
+  closeButtonRef.value?.focus()
 })
 
 onUnmounted(() => {
@@ -36,10 +73,15 @@ onUnmounted(() => {
 <template>
   <Teleport to="body">
     <div
+      ref="lightboxRef"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Galería de imágenes"
       class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 px-4 backdrop-blur-sm"
       @click.self="$emit('close')"
     >
       <button
+        ref="closeButtonRef"
         type="button"
         class="absolute top-6 right-6 text-white/80 transition-colors hover:text-white"
         aria-label="Cerrar galería"

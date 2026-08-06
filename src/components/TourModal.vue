@@ -1,5 +1,5 @@
 <script setup>
-import { onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import ImageCarousel from './ImageCarousel.vue'
 
 defineProps({
@@ -11,9 +11,49 @@ defineProps({
 
 const emit = defineEmits(['close'])
 
+const modalRef = ref(null)
+const closeButtonRef = ref(null)
+
 document.body.style.overflow = 'hidden'
 
+function handleKeydown(event) {
+  if (event.key === 'Escape') {
+    emit('close')
+    return
+  }
+  if (event.key !== 'Tab') return
+
+  const modal = modalRef.value
+  if (!modal) return
+
+  const focusable = modal.querySelectorAll(
+    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  )
+  if (focusable.length === 0) return
+
+  const first = focusable[0]
+  const last = focusable[focusable.length - 1]
+
+  if (event.shiftKey) {
+    if (document.activeElement === first) {
+      event.preventDefault()
+      last.focus()
+    }
+  } else {
+    if (document.activeElement === last) {
+      event.preventDefault()
+      first.focus()
+    }
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeydown)
+  closeButtonRef.value?.focus()
+})
+
 onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeydown)
   document.body.style.overflow = ''
 })
 </script>
@@ -21,6 +61,10 @@ onUnmounted(() => {
 <template>
   <Teleport to="body">
     <div
+      ref="modalRef"
+      role="dialog"
+      aria-modal="true"
+      :aria-label="tour.nombre"
       class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 animate-fade-in"
       @click.self="emit('close')"
     >
@@ -30,6 +74,7 @@ onUnmounted(() => {
         class="relative bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col z-10"
       >
         <button
+          ref="closeButtonRef"
           type="button"
           aria-label="Cerrar modal"
           class="absolute top-4 right-4 z-20 w-10 h-10 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center transition-colors duration-300 backdrop-blur-sm"

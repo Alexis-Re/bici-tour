@@ -59,6 +59,7 @@ function showPrev() {
               ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/20'
               : 'bg-orange-50 text-gray-600 hover:bg-orange-100'
           "
+          :aria-pressed="activeCategory === categoria"
           @click="setCategory(categoria)"
         >
           {{ categoria }}

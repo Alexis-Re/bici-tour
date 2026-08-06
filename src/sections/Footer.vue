@@ -88,9 +88,6 @@ import { contact } from '@/data/contact'
           <a href="#contacto" class="transition-colors duration-300 hover:text-orange-400">
             Reservar ahora
           </a>
-          <a href="#testimonios" class="transition-colors duration-300 hover:text-orange-400">
-            Opiniones
-          </a>
         </div>
       </div>
     </div>

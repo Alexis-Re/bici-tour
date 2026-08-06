@@ -30,10 +30,6 @@ export const tours = [
 
     precio: '$150.000',
 
-    precioDescuento: '$120.000',
-
-    precioDescuentoInfo: '3 o 4 personas',
-
     duracion: 'Día completo',
 
     dificultad: 'Moderada',
@@ -74,10 +70,6 @@ export const tours = [
     destacado: false,
 
     precio: '$150.000',
-
-    precioDescuento: '$120.000',
-
-    precioDescuentoInfo: '3 o 4 personas',
 
     duracion: 'Día completo',
 

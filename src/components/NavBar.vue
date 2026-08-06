@@ -28,18 +28,34 @@ function handleMobileLinkClick(sectionId) {
   closeMenu()
   setTimeout(() => scrollToSection(sectionId), 300)
 }
+
+function scrollToTop() {
+  closeMenu()
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 </script>
 
 <template>
+  <a
+    href="#contenido"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-orange-500 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus:outline-none"
+  >
+    Saltar al contenido
+  </a>
   <nav class="fixed top-0 left-0 w-full z-50 bg-black/25 backdrop-blur-md border-b border-white/5">
     <div class="max-w-7xl mx-auto px-6 md:px-12 h-20 flex justify-between items-center">
-      <div class="flex-shrink-0">
+      <a
+        href="#"
+        class="flex-shrink-0"
+        aria-label="Volver al inicio"
+        @click.prevent="scrollToTop"
+      >
         <img
           :src="logo"
           alt="Xplora VGB"
           class="h-10 md:h-12 w-auto transition-transform duration-300 hover:scale-105"
         />
-      </div>
+      </a>
 
       <ul
         class="hidden md:flex items-center gap-8 lg:gap-10 text-xs uppercase font-semibold tracking-[0.15em] text-white/90"
@@ -57,7 +73,7 @@ function handleMobileLinkClick(sectionId) {
         type="button"
         class="md:hidden relative z-[70] h-8 w-8 text-white"
         :aria-expanded="isMenuOpen"
-        aria-label="Abrir menú de navegación"
+        :aria-label="isMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'"
         @click="toggleMenu"
       >
         <span

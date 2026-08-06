@@ -55,6 +55,10 @@ src/
 - Only 1 tour defined (`Pueblo Escondido`) in `src/data/tours.js`
 - `experiences.js` mentioned in README but doesn't exist (data is inline in `Experiences.vue`)
 
+## Runtime Quirks
+- `Testimonials` section is conditionally rendered via `v-if="mostrarTestimonios"` (defaults to `false` in `App.vue:14`)
+- `.env` is gitignored; `.env.example` has placeholder values — EmailJS form won't work without real keys
+
 ## Environment
 - Node: `^20.19.0 || >=22.12.0`
 - Package manager: npm (lockfile: `package-lock.json`)

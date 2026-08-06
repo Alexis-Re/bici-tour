@@ -16,12 +16,14 @@ const mostrarTestimonios = ref(false)
 
 <template>
   <NavBar />
-  <Hero />
-  <Tours />
-  <Experiences />
-  <Gallery />
-  <Benefits />
-  <Testimonials v-if="mostrarTestimonios" />
-  <Contact />
+  <main id="contenido">
+    <Hero />
+    <Tours />
+    <Experiences />
+    <Gallery />
+    <Benefits />
+    <Testimonials v-if="mostrarTestimonios" />
+    <Contact />
+  </main>
   <Footer />
 </template>
