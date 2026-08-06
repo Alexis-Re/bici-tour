@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import emailjs from '@emailjs/browser'
 import SectionTitle from '@/components/SectionTitle.vue'
 import { tours } from '@/data/tours'
@@ -13,32 +13,76 @@ const mensaje = ref('')
 const honeypot = ref('')
 const enviado = ref(false)
 const error = ref(false)
+const errorMensaje = ref('')
+const erroresCampo = ref({})
 const cargando = ref(false)
 const bloqueado = ref(false)
 
 const MAX_MENSAJE = 500
+const MAX_NOMBRE = 100
+
+const contadorMensajes = computed(() => `${mensaje.value.length} / ${MAX_MENSAJE}`)
+
+function sanitizar(valor) {
+  return valor.replace(/[<>]/g, '')
+}
+
+function esTelefonoValido(valor) {
+  const soloDigitos = valor.replace(/\D/g, '')
+  if (soloDigitos.length < 8 || soloDigitos.length > 13) return false
+  if (soloDigitos.startsWith('54')) {
+    const sinPais = soloDigitos.slice(2)
+    return sinPais.length >= 10 && sinPais.length <= 11
+  }
+  return true
+}
 
 function validar() {
-  if (!nombre.value.trim()) return 'Ingresá tu nombre'
-  if (nombre.value.trim().length < 2) return 'El nombre es muy corto'
-  if (!email.value.trim()) return 'Ingresá tu email'
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) return 'El email no es válido'
-  if (!tourSeleccionado.value) return 'Elegí un recorrido'
-  if (telefono.value.trim() && !/^[\d\s\-+()]{7,20}$/.test(telefono.value.trim()))
-    return 'El teléfono no es válido'
-  if (mensaje.value.length > MAX_MENSAJE) return `El mensaje no puede superar ${MAX_MENSAJE} caracteres`
-  return null
+  const errores = {}
+  const nombreLimpio = sanitizar(nombre.value.trim())
+
+  if (!nombreLimpio) {
+    errores.nombre = 'Ingresá tu nombre'
+  } else if (nombreLimpio.length < 2) {
+    errores.nombre = 'El nombre es muy corto'
+  } else if (nombreLimpio.length > MAX_NOMBRE) {
+    errores.nombre = `El nombre no puede superar ${MAX_NOMBRE} caracteres`
+  }
+
+  if (!email.value.trim()) {
+    errores.email = 'Ingresá tu email'
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+    errores.email = 'El email no es válido'
+  }
+
+  if (!tourSeleccionado.value) {
+    errores.tour = 'Elegí un recorrido'
+  }
+
+  if (telefono.value.trim() && !esTelefonoValido(telefono.value)) {
+    errores.telefono = 'Ingresá un teléfono válido'
+  }
+
+  if (mensaje.value.length > MAX_MENSAJE) {
+    errores.mensaje = `El mensaje no puede superar ${MAX_MENSAJE} caracteres`
+  }
+
+  return errores
 }
 
 function enviarFormulario() {
   error.value = false
+  errorMensaje.value = ''
+  erroresCampo.value = {}
   enviado.value = false
 
   if (honeypot.value) return
 
-  const errorValidacion = validar()
-  if (errorValidacion) {
+  const errores = validar()
+  if (Object.keys(errores).length > 0) {
+    erroresCampo.value = errores
     error.value = true
+    errorMensaje.value = 'Revisá los campos marcados'
     return
   }
 
@@ -49,11 +93,11 @@ function enviarFormulario() {
       import.meta.env.VITE_EMAILJS_SERVICE_ID,
       import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
       {
-        nombre: nombre.value.trim(),
+        nombre: sanitizar(nombre.value.trim()),
         email: email.value.trim(),
         telefono: telefono.value.trim(),
         tour: tourSeleccionado.value,
-        mensaje: mensaje.value.trim(),
+        mensaje: sanitizar(mensaje.value.trim()),
       },
       import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     )
@@ -69,13 +113,20 @@ function enviarFormulario() {
         bloqueado.value = false
       }, 30000)
     })
-    .catch((err) => {
-      console.error('Error al enviar formulario:', err)
+    .catch(() => {
+      if (import.meta.env.DEV) {
+        console.error('Error al enviar formulario')
+      }
       error.value = true
+      errorMensaje.value = 'No pudimos enviar tu consulta. Intentá de nuevo o escribinos por WhatsApp.'
     })
     .finally(() => {
       cargando.value = false
     })
+}
+
+function tieneError(campo) {
+  return !!erroresCampo.value[campo]
 }
 </script>
 
@@ -107,8 +158,18 @@ function enviarFormulario() {
               type="text"
               required
               placeholder="Tu nombre"
-              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all duration-300 bg-white"
+              maxlength="100"
+              autocomplete="name"
+              :aria-invalid="tieneError('nombre')"
+              :aria-describedby="tieneError('nombre') ? 'nombre-error' : undefined"
+              class="w-full px-4 py-3 rounded-xl border focus:ring-2 outline-none transition-all duration-300 bg-white"
+              :class="tieneError('nombre')
+                ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
+                : 'border-gray-300 focus:border-orange-500 focus:ring-orange-500/20'"
             />
+            <p v-if="tieneError('nombre')" id="nombre-error" class="text-red-600 text-sm mt-1">
+              {{ erroresCampo.nombre }}
+            </p>
           </div>
 
           <div class="grid sm:grid-cols-2 gap-6">
@@ -122,21 +183,39 @@ function enviarFormulario() {
                 type="email"
                 required
                 placeholder="tu@email.com"
-                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all duration-300 bg-white"
+                autocomplete="email"
+                :aria-invalid="tieneError('email')"
+                :aria-describedby="tieneError('email') ? 'email-error' : undefined"
+                class="w-full px-4 py-3 rounded-xl border focus:ring-2 outline-none transition-all duration-300 bg-white"
+                :class="tieneError('email')
+                  ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
+                  : 'border-gray-300 focus:border-orange-500 focus:ring-orange-500/20'"
               />
+              <p v-if="tieneError('email')" id="email-error" class="text-red-600 text-sm mt-1">
+                {{ erroresCampo.email }}
+              </p>
             </div>
 
             <div>
               <label for="telefono" class="block text-sm font-semibold text-gray-900 mb-2">
-                Teléfono
+                Teléfono <span class="font-normal text-gray-500">(opcional)</span>
               </label>
               <input
                 id="telefono"
                 v-model="telefono"
                 type="tel"
-                placeholder="351 123 4567"
-                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all duration-300 bg-white"
+                placeholder="+54 9 351 123-4567"
+                autocomplete="tel"
+                :aria-invalid="tieneError('telefono')"
+                :aria-describedby="tieneError('telefono') ? 'telefono-error' : undefined"
+                class="w-full px-4 py-3 rounded-xl border focus:ring-2 outline-none transition-all duration-300 bg-white"
+                :class="tieneError('telefono')
+                  ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
+                  : 'border-gray-300 focus:border-orange-500 focus:ring-orange-500/20'"
               />
+              <p v-if="tieneError('telefono')" id="telefono-error" class="text-red-600 text-sm mt-1">
+                {{ erroresCampo.telefono }}
+              </p>
             </div>
           </div>
 
@@ -148,13 +227,21 @@ function enviarFormulario() {
               id="tour"
               v-model="tourSeleccionado"
               required
-              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all duration-300 bg-white"
+              :aria-invalid="tieneError('tour')"
+              :aria-describedby="tieneError('tour') ? 'tour-error' : undefined"
+              class="w-full px-4 py-3 rounded-xl border focus:ring-2 outline-none transition-all duration-300 bg-white"
+              :class="tieneError('tour')
+                ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
+                : 'border-gray-300 focus:border-orange-500 focus:ring-orange-500/20'"
             >
               <option value="" disabled>Elegí un recorrido</option>
               <option v-for="tour in tours" :key="tour.id" :value="tour.nombre">
                 {{ tour.nombre }} — {{ tour.precio }}
               </option>
             </select>
+            <p v-if="tieneError('tour')" id="tour-error" class="text-red-600 text-sm mt-1">
+              {{ erroresCampo.tour }}
+            </p>
           </div>
 
           <div>
@@ -165,9 +252,27 @@ function enviarFormulario() {
               id="mensaje"
               v-model="mensaje"
               rows="4"
+              maxlength="500"
               placeholder="Contanos si tenés alguna consulta, preferencia de fecha, cantidad de personas..."
-              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all duration-300 resize-none bg-white"
+              :aria-invalid="tieneError('mensaje')"
+              :aria-describedby="tieneError('mensaje') ? 'mensaje-error' : 'mensaje-contador'"
+              class="w-full px-4 py-3 rounded-xl border focus:ring-2 outline-none transition-all duration-300 resize-none bg-white"
+              :class="tieneError('mensaje')
+                ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
+                : 'border-gray-300 focus:border-orange-500 focus:ring-orange-500/20'"
             ></textarea>
+            <div class="flex justify-between mt-1">
+              <p v-if="tieneError('mensaje')" id="mensaje-error" class="text-red-600 text-sm">
+                {{ erroresCampo.mensaje }}
+              </p>
+              <p
+                id="mensaje-contador"
+                class="text-sm ml-auto"
+                :class="mensaje.length > MAX_MENSAJE * 0.9 ? 'text-red-500' : 'text-gray-400'"
+              >
+                {{ contadorMensajes }}
+              </p>
+            </div>
           </div>
 
           <button
@@ -188,6 +293,8 @@ function enviarFormulario() {
 
           <div
             v-else-if="enviado && !error"
+            role="status"
+            aria-live="polite"
             class="bg-green-50 border border-green-200 rounded-xl p-6 text-center"
           >
             <p class="text-green-700 font-semibold text-lg">
@@ -200,14 +307,21 @@ function enviarFormulario() {
 
           <div
             v-else-if="error"
+            id="error-mensaje"
+            role="alert"
+            aria-live="assertive"
             class="bg-red-50 border border-red-200 rounded-xl p-6 text-center"
           >
             <p class="text-red-700 font-semibold text-lg">
-              Hubo un error al enviar.
+              {{ errorMensaje || 'Hubo un error al enviar.' }}
             </p>
-            <p class="text-red-600 mt-2">
-              Intentá de nuevo o escribinos por WhatsApp.
-            </p>
+            <button
+              type="button"
+              class="mt-4 text-orange-600 underline font-semibold hover:text-orange-700 transition-colors"
+              @click="error = false; errorMensaje = ''"
+            >
+              Intentar de nuevo
+            </button>
           </div>
         </form>
 
