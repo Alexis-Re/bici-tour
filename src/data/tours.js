@@ -8,6 +8,7 @@ import aguilaChampa from '@/assets/Tours/champaqui/aguila-champa.webp'
 import cuevasChampa from '@/assets/Tours/champaqui/cuevas-champa.webp'
 import parejaPiedras from '@/assets/Tours/champaqui/pareja-piedras-champa.webp'
 import piedraAgua from '@/assets/Tours/champaqui/piedra-agua-reflejo-champa.webp'
+import champaCielo from '@/assets/Tours/champaqui/champa-cielo.webp'
 
 export const tours = [
   {
@@ -37,7 +38,7 @@ export const tours = [
     capacidad: 'Mínimo 2 personas',
 
     incluye: [
-      { icono: '✔', label: 'Traslado en camioneta desde VGB' },
+      { icono: '✔', label: 'Traslado en camioneta desde VGB o Santa Rosa' },
       { icono: '✔', label: 'Te buscamos por tu alojamiento' },
       { icono: '✔', label: 'Snacks y almuerzo' },
       { icono: '✔', label: 'Recorrido guiado' },
@@ -54,31 +55,31 @@ export const tours = [
   {
     id: 2,
 
-    nombre: 'Champaquí',
+    nombre: 'Champa en el día',
 
     categoria: 'Trekking y montaña',
 
-    descripcion: 'Ascenso al Cerro Champaquí, el techo de Córdoba, con vistas panorámicas increíbles.',
+    descripcion: 'Travesía en 4x4 y trekking al Cerro Champaquí.',
 
     descripcionLarga:
-      'Una aventura inolvidable para los amantes de la montaña. Ascenderemos al Cerro Champaquí, el pico más alto de la provincia de Córdoba, disfrutando de paisajes espectaculares y flora nativa. Todo con guía local, almuerzo y traslado incluido.',
+      'Travesía para hacer cumbre al Champaqui (2790 msnm) con baja dificultad. Salimos en 4x4 desde Villa General Belgrano o Santa Rosa de Calamuchita, recorremos 3 horas hasta el filo de la montaña y desde allí trekking de 1 hora hasta la cumbre, donde disfrutaremos de vistas panorámicas y comeremos un sándwich. Regreso a las 17 hs.',
 
     imagen: cuevasChampa,
 
-    imagenes: [aguilaChampa, cuevasChampa, parejaPiedras, piedraAgua],
+    imagenes: [aguilaChampa, cuevasChampa, parejaPiedras, piedraAgua, champaCielo],
 
     destacado: false,
 
-    precio: '$150.000',
+    precio: '$130.000',
 
-    duracion: 'Día completo',
+    duracion: 'Medio día',
 
-    dificultad: 'Alta',
+    dificultad: 'Baja-media',
 
     capacidad: 'Mínimo 2 personas',
 
     incluye: [
-      { icono: '✔', label: 'Traslado en camioneta desde VGB' },
+      { icono: '✔', label: 'Traslado en camioneta desde VGB o Santa Rosa' },
       { icono: '✔', label: 'Te buscamos por tu alojamiento' },
       { icono: '✔', label: 'Snacks y almuerzo' },
       { icono: '✔', label: 'Recorrido guiado' },
@@ -87,8 +88,8 @@ export const tours = [
     ],
 
     informacion: [
-      { icono: '⛰', label: 'Trekking + montaña + Champaquí' },
-      { icono: '👥', label: 'Mínimo 2 personas' },
+      { icono: '⛰', label: 'Cumbre 2790 msnm · 4x4 + trekking' },
+      { icono: '⏰', label: 'Salida 7:30/8 hs · Regreso 17 hs' },
       { icono: '💰', label: 'Señá con 30% y pagá el saldo anterior a la salida' },
     ],
   },

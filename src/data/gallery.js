@@ -14,6 +14,7 @@ import aguilaChampa from '@/assets/Gallery/aguila-champa.webp'
 import cuevasChampa from '@/assets/Gallery/cuevas-champa.webp'
 import parejaPiedras from '@/assets/Gallery/pareja-piedras-champa.webp'
 import piedraAgua from '@/assets/Gallery/piedra-agua-reflejo-champa.webp'
+import champaCielo from '@/assets/Tours/champaqui/champa-cielo.webp'
 
 export const galleryCategories = ['Todas', 'Pueblo Escondido', 'Champaquí']
 
@@ -105,6 +106,12 @@ export const galleryItems = [
     id: 16,
     imagen: piedraAgua,
     alt: 'Piedra con reflejo del agua en Champaquí',
+    categoria: 'Champaquí',
+  },
+  {
+    id: 17,
+    imagen: champaCielo,
+    alt: 'Cielo y montaña en el Champaquí',
     categoria: 'Champaquí',
   },
 ]
